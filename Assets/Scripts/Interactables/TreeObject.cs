@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class TreeObject : MonoBehaviour, IInteractable
 {
+    [SerializeField] private Item woodItem;
+
     public void Interact()
     {
-        Debug.Log("Interacted with tree");
+        Inventory.Instance.AddItem(woodItem);
     }
 }
