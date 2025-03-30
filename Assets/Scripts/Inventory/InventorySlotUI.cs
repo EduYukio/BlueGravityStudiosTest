@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
 {
     public Image icon;
+    public Image outline;
 
     private int index;
     private InventoryUI inventoryUI;
@@ -29,6 +30,8 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
         {
             icon.enabled = false;
         }
+
+        outline.enabled = inventoryUI.IsSlotSelected(index);
     }
 
     public void OnPointerClick(PointerEventData eventData)

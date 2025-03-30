@@ -62,6 +62,7 @@ public class Inventory : MonoBehaviour
             slots[index].item = null;
 
             // improve with events later
+            FindAnyObjectByType<InventoryUI>().Deselect();
             FindAnyObjectByType<InventoryUI>().Refresh();
         }
     }
@@ -74,6 +75,7 @@ public class Inventory : MonoBehaviour
             if (item != null && item.itemName == itemName)
             {
                 slots[pair.Key].item = null;
+                FindAnyObjectByType<InventoryUI>().Deselect();
                 FindAnyObjectByType<InventoryUI>().Refresh();
                 return true;
             }

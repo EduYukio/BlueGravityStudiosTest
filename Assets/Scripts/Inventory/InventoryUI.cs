@@ -45,14 +45,14 @@ public class InventoryUI : MonoBehaviour
         }
         else if (selectedIndex == index)
         {
-            selectedIndex = null;
+            Deselect();
         }
         else
         {
             Inventory.Instance.Swap(selectedIndex.Value, index);
-            selectedIndex = null;
-            Refresh();
+            Deselect();
         }
+        Refresh();
     }
 
     public void OnSlotRightClick(int index)
@@ -60,7 +60,7 @@ public class InventoryUI : MonoBehaviour
         if (selectedIndex != null && selectedIndex != index)
         {
             TryCombine(selectedIndex.Value, index);
-            selectedIndex = null;
+            Deselect();
             Refresh();
         }
     }
@@ -86,5 +86,15 @@ public class InventoryUI : MonoBehaviour
         {
             uiSlots[i].Refresh();
         }
+    }
+
+    public void Deselect()
+    {
+        selectedIndex = null;
+    }
+
+    public bool IsSlotSelected(int index)
+    {
+        return selectedIndex != null && selectedIndex == index;
     }
 }
