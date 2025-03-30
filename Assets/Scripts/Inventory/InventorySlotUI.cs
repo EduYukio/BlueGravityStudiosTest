@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
+public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Image icon;
     public Image outline;
@@ -44,5 +44,19 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler
         {
             inventoryUI.OnSlotRightClick(index);
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        var item = Inventory.Instance.GetItem(index);
+        if (item != null)
+        {
+            Tooltip.Instance.ShowTooltip(item.itemDescription);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Tooltip.Instance.HideTooltip();
     }
 }

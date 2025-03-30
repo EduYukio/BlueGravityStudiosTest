@@ -41,6 +41,7 @@ public class Inventory : MonoBehaviour
         if (slots.ContainsKey(indexA) && slots.ContainsKey(indexB))
         {
             (slots[indexA].item, slots[indexB].item) = (slots[indexB].item, slots[indexA].item);
+            Tooltip.Instance.HideTooltip();
         }
     }
 

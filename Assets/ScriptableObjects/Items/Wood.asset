@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   itemName: Wood
+  itemDescription: Wood\nYou can make many tools with it!
   icon: {fileID: 21300000, guid: 21eb01522a6a3634e9b349191d5e84f2, type: 3}

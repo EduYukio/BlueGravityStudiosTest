@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: String
   m_EditorClassIdentifier: 
   itemName: String
+  itemDescription: String\nIts very resilient!
   icon: {fileID: 21300000, guid: 5041df745063f2949a15f32d9a0a61e3, type: 3}

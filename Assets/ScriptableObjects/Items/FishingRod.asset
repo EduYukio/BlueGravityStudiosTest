@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: FishingRod
   m_EditorClassIdentifier: 
   itemName: FishingRod
+  itemDescription: Fishing Rod\nFish can't resist it!
   icon: {fileID: 21300000, guid: 1959adfdc5c338840858eec9307f0184, type: 3}

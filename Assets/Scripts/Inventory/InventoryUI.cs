@@ -77,6 +77,7 @@ public class InventoryUI : MonoBehaviour
         {
             Inventory.Instance.slots[a].item = null;
             Inventory.Instance.slots[b].item = fishingRodItem;
+            Tooltip.Instance.HideTooltip();
         }
     }
 
