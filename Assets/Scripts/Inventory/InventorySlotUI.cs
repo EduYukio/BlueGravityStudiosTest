@@ -31,7 +31,10 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
             icon.enabled = false;
         }
 
-        outline.enabled = inventoryUI.IsSlotSelected(index);
+        if (inventoryUI != null)
+        {
+            outline.enabled = inventoryUI.IsSlotSelected(index);
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
