@@ -10,7 +10,7 @@ public class NPC : MonoBehaviour, IInteractable
 
         if (Inventory.Instance.GetItem("Fish"))
         {
-            //remove fish
+            Inventory.Instance.RemoveItem("Fish");
             //dialog = thanks, you win etc
         }
         else if (Inventory.Instance.GetItem("String") || Inventory.Instance.GetItem("FishingRod"))
