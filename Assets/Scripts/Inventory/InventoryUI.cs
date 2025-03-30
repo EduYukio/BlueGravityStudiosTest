@@ -6,6 +6,9 @@ public class InventoryUI : MonoBehaviour
 
     private int? selectedIndex = null;
 
+    // move this to a better place
+    [SerializeField] private Item fishingRodItem;
+
     private void Start()
     {
         for (int i = 0; i < uiSlots.Length; i++)
@@ -55,9 +58,8 @@ public class InventoryUI : MonoBehaviour
         if ((itemA.name == "Wood" && itemB.name == "String") ||
             (itemA.name == "String" && itemB.name == "Wood"))
         {
-            var fishingRod = Resources.Load<Item>("FishingRod");
             Inventory.Instance.slots[a].item = null;
-            Inventory.Instance.slots[b].item = fishingRod;
+            Inventory.Instance.slots[b].item = fishingRodItem;
         }
     }
 
