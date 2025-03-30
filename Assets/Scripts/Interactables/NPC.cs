@@ -1,9 +1,17 @@
+using TMPro;
 using UnityEngine;
 
 
 public class NPC : MonoBehaviour, IInteractable
 {
     [SerializeField] private Item stringItem;
+    GameObject speechText;
+
+    public void Start()
+    {
+        speechText = GameObject.Find("SpeechText");
+        speechText.GetComponent<TextMeshPro>().text = "Hello!";
+    }
 
     public void Interact()
     {
@@ -11,16 +19,16 @@ public class NPC : MonoBehaviour, IInteractable
         if (Inventory.Instance.GetItem("Fish"))
         {
             Inventory.Instance.RemoveItem("Fish");
-            //dialog = thanks, you win etc
+            speechText.GetComponent<TextMeshPro>().text = "Yumm, nice fish!!\nThanks ♥";
         }
         else if (Inventory.Instance.GetItem("String") || Inventory.Instance.GetItem("FishingRod"))
         {
-            //dialog im hungry, need a fish
+            speechText.GetComponent<TextMeshPro>().text = "I'm Hungry =(\nCan you get me a fish?";
         }
         else
         {
             Inventory.Instance.AddItem(stringItem);
-            //dialog here is a string that i found, could you give me a fish?
+            speechText.GetComponent<TextMeshPro>().text = "Here, I found this string.\nI'm so Hungry =(";
         }
     }
 }
