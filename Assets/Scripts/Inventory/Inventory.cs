@@ -27,13 +27,12 @@ public class Inventory : MonoBehaviour
             {
                 slots[pair.Key].item = item;
 
-                // improve with events later
                 FindAnyObjectByType<InventoryUI>().Refresh();
                 return true;
             }
         }
 
-        return false; // inventory full, add error feedback
+        return false;
     }
 
     public void Swap(int indexA, int indexB)
@@ -62,7 +61,6 @@ public class Inventory : MonoBehaviour
         {
             slots[index].item = null;
 
-            // improve with events later
             FindAnyObjectByType<InventoryUI>().Deselect();
             FindAnyObjectByType<InventoryUI>().Refresh();
         }
@@ -82,6 +80,6 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        return false; // item not found
+        return false;
     }
 }

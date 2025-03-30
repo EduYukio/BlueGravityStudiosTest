@@ -3,7 +3,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    //check all public and privates
     public PlayerBaseState CurrentState { get; set; }
 
     public readonly PlayerIdleState IdleState = new();
@@ -27,10 +26,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         CurrentState.Update(this);
-
-        // Debug code
-        // string debugState = CurrentState.GetType().Name;
-        // Debug.Log(debugState);
     }
 
     void FixedUpdate()

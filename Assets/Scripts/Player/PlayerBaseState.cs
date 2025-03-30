@@ -10,7 +10,6 @@ public abstract class PlayerBaseState
     {
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
-        //talvez adicionar valor um pouco maior que 0 pra gamepads sensíveis
         if (xInput == 0 && yInput == 0)
         {
             player.TransitionToState(player.IdleState);

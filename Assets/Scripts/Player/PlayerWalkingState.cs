@@ -16,7 +16,6 @@ public class PlayerWalkingState : PlayerBaseState
     private void PlayAnimation(Player player, float xInput, float yInput)
     {
         string animationDirection;
-        //talvez transformar num switch?
         if (xInput > 0)
         {
             animationDirection = "WalkingRight";

@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.IO;
-using System.Collections.Generic;
 using System.Linq;
 
 public class InventorySaveSystem : MonoBehaviour

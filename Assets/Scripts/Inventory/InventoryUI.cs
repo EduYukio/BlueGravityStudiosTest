@@ -6,7 +6,6 @@ public class InventoryUI : MonoBehaviour
 
     private int? selectedIndex = null;
 
-    // move this to a better place
     [SerializeField] private Item fishingRodItem;
 
     private void Start()
