@@ -33,7 +33,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        return false; // inventory full, add feedbacks
+        return false; // inventory full, add error feedback
     }
 
     public void Swap(int indexA, int indexB)
@@ -53,5 +53,32 @@ public class Inventory : MonoBehaviour
     {
         var slot = slots.Values.FirstOrDefault(s => s.item != null && s.item.itemName == name);
         return slot?.item;
+    }
+
+    public void RemoveItem(int index)
+    {
+        if (slots.ContainsKey(index) && !slots[index].IsEmpty)
+        {
+            slots[index].item = null;
+
+            // improve with events later
+            FindAnyObjectByType<InventoryUI>().Refresh();
+        }
+    }
+
+    public bool RemoveItem(string itemName)
+    {
+        foreach (var pair in slots)
+        {
+            var item = pair.Value.item;
+            if (item != null && item.itemName == itemName)
+            {
+                slots[pair.Key].item = null;
+                FindAnyObjectByType<InventoryUI>().Refresh();
+                return true;
+            }
+        }
+
+        return false; // item not found
     }
 }

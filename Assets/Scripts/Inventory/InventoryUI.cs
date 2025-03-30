@@ -19,6 +19,23 @@ public class InventoryUI : MonoBehaviour
         Refresh();
     }
 
+    private void Update()
+    {
+        if (selectedIndex != null && Input.GetMouseButtonDown(0))
+        {
+            if (!IsPointerOverUIElement())
+            {
+                Inventory.Instance.RemoveItem(selectedIndex.Value);
+                Refresh();
+            }
+        }
+    }
+
+    private bool IsPointerOverUIElement()
+    {
+        return UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
+    }
+
     public void OnSlotLeftClick(int index)
     {
         if (selectedIndex == null)
