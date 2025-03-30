@@ -2,24 +2,15 @@ using UnityEngine;
 
 public class PlayerWalkingState : PlayerBaseState
 {
-    public override void EnterState(Player player)
-    {
-        Setup(player);
-    }
-
     public override void Update(Player player)
     {
+        if (base.CheckTransitionToInteracting(player)) return;
         if (base.CheckTransitionToIdle(player)) return;
-        //check transition to interact
     }
 
     public override void FixedUpdate(Player player)
     {
         WalkAction(player);
-    }
-
-    private void Setup(Player player)
-    {
     }
 
     private void PlayAnimation(Player player, float xInput, float yInput)

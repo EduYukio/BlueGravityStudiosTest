@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class PlayerBaseState
 {
-    public abstract void EnterState(Player player);
+    public virtual void OnEnterState(Player player) { }
     public virtual void Update(Player player) { }
     public virtual void FixedUpdate(Player player) { }
 
@@ -27,6 +27,17 @@ public abstract class PlayerBaseState
         if (xInput != 0 || yInput != 0)
         {
             player.TransitionToState(player.WalkingState);
+            return true;
+        }
+
+        return false;
+    }
+
+    public virtual bool CheckTransitionToInteracting(Player player)
+    {
+        if (Input.GetButtonDown("Interact") && player.interactableObjectInRange != null)
+        {
+            player.TransitionToState(player.InteractingState);
             return true;
         }
 
