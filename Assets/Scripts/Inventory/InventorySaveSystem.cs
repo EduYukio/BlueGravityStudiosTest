@@ -1,12 +1,15 @@
 using UnityEngine;
 using System.IO;
 using System.Linq;
+using System;
 
 public class InventorySaveSystem : MonoBehaviour
 {
     [SerializeField] private Item[] allItems;
 
     private string SavePath => Application.persistentDataPath + "/inventory.json";
+
+    public static Action LoadedGame;
 
     public void Save()
     {
@@ -49,6 +52,6 @@ public class InventorySaveSystem : MonoBehaviour
             }
         }
 
-        FindAnyObjectByType<InventoryUI>()?.Refresh();
+        LoadedGame?.Invoke();
     }
 }

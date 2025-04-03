@@ -8,6 +8,8 @@ public class InventoryUI : MonoBehaviour
 
     [SerializeField] private Item fishingRodItem;
 
+
+
     private void Start()
     {
         for (int i = 0; i < uiSlots.Length; i++)
@@ -35,6 +37,20 @@ public class InventoryUI : MonoBehaviour
         return UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
     }
 
+    private void OnEnable()
+    {
+        Inventory.ItemAdded += Refresh;
+        Inventory.ItemRemoved += Deselect;
+        InventorySaveSystem.LoadedGame += Refresh;
+    }
+
+    private void OnDisable()
+    {
+        Inventory.ItemAdded -= Refresh;
+        Inventory.ItemRemoved -= Deselect;
+        InventorySaveSystem.LoadedGame -= Refresh;
+    }
+
     public void OnSlotLeftClick(int index)
     {
         if (selectedIndex == null)
@@ -60,7 +76,6 @@ public class InventoryUI : MonoBehaviour
         {
             TryCombine(selectedIndex.Value, index);
             Deselect();
-            Refresh();
         }
     }
 
@@ -91,6 +106,7 @@ public class InventoryUI : MonoBehaviour
     public void Deselect()
     {
         selectedIndex = null;
+        Refresh();
     }
 
     public bool IsSlotSelected(int index)

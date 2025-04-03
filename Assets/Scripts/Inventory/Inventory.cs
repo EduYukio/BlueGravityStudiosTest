@@ -1,11 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public class Inventory : MonoBehaviour
 {
     public int size = 10;
     public Dictionary<int, InventorySlot> slots = new();
+
+    public static Action ItemAdded;
+    public static Action ItemRemoved;
 
     public static Inventory Instance { get; private set; }
 
@@ -27,7 +31,7 @@ public class Inventory : MonoBehaviour
             {
                 slots[pair.Key].item = item;
 
-                FindAnyObjectByType<InventoryUI>().Refresh();
+                ItemAdded?.Invoke();
                 return true;
             }
         }
@@ -61,8 +65,7 @@ public class Inventory : MonoBehaviour
         {
             slots[index].item = null;
 
-            FindAnyObjectByType<InventoryUI>().Deselect();
-            FindAnyObjectByType<InventoryUI>().Refresh();
+            ItemRemoved?.Invoke();
         }
     }
 
@@ -74,8 +77,8 @@ public class Inventory : MonoBehaviour
             if (item != null && item.itemName == itemName)
             {
                 slots[pair.Key].item = null;
-                FindAnyObjectByType<InventoryUI>().Deselect();
-                FindAnyObjectByType<InventoryUI>().Refresh();
+
+                ItemRemoved?.Invoke();
                 return true;
             }
         }
