@@ -11,6 +11,16 @@ public class InventorySaveSystem : MonoBehaviour
 
     public static Action LoadedGame;
 
+    private void Start()
+    {
+        Load();
+    }
+
+    private void OnApplicationQuit()
+    {
+        Save();
+    }
+
     public void Save()
     {
         var data = new InventorySaveData();
