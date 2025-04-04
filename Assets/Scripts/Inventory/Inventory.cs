@@ -23,16 +23,23 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public bool AddItem(Item item)
+    public bool AddItem(Item item, int? index = null)
     {
-        foreach (var pair in slots)
+        if (index != null && index >= 0 && index < size)
         {
-            if (pair.Value.IsEmpty)
+            slots[(int)index].item = item;
+        }
+        else
+        {
+            foreach (var pair in slots)
             {
-                slots[pair.Key].item = item;
+                if (pair.Value.IsEmpty)
+                {
+                    slots[pair.Key].item = item;
 
-                ItemAdded?.Invoke();
-                return true;
+                    ItemAdded?.Invoke();
+                    return true;
+                }
             }
         }
 

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.IO;
 using System.Linq;
 using System;
+using UnityEngine.SceneManagement;
 
 public class InventorySaveSystem : MonoBehaviour
 {
@@ -27,13 +28,15 @@ public class InventorySaveSystem : MonoBehaviour
 
         foreach (var pair in Inventory.Instance.slots)
         {
-            if (pair.Value.item != null)
+            var slot = pair.Value;
+            if (!slot.IsEmpty)
             {
-                data.slots.Add(new InventorySlotData
+                var slotData = new InventorySlotData
                 {
                     slotIndex = pair.Key,
-                    itemName = pair.Value.item.itemName
-                });
+                    itemName = slot.item.itemName
+                };
+                data.slots.Add(slotData);
             }
         }
 
@@ -58,10 +61,22 @@ public class InventorySaveSystem : MonoBehaviour
             var item = allItems.FirstOrDefault(i => i.itemName == slotData.itemName);
             if (item != null)
             {
-                Inventory.Instance.slots[slotData.slotIndex].item = item;
+                Inventory.Instance.AddItem(item, slotData.slotIndex);
             }
         }
 
         LoadedGame?.Invoke();
+    }
+
+    public void NewGame()
+    {
+        foreach (var slot in Inventory.Instance.slots.Values)
+        {
+            slot.item = null;
+        }
+
+        Save();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
