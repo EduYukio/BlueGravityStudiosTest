@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 
-
 public class NPC : MonoBehaviour, IInteractable
 {
     [SerializeField] private Item stringItem;
@@ -15,7 +14,6 @@ public class NPC : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-
         if (Inventory.Instance.GetItem("Fish"))
         {
             Inventory.Instance.RemoveItem("Fish");
